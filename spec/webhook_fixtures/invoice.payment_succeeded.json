@@ -1,0 +1,55 @@
+{
+    "amount_due": 9900,
+    "attempt_count": 0,
+    "attempted": true,
+    "charge": "ch_blahblahblah",
+    "closed": true,
+    "currency": "usd",
+    "customer": "cus_1A3zUmx7NpUgrT",
+    "date": 1367969027,
+    "discount": null,
+    "ending_balance": 0,
+    "id": "in_2blahblahagain",
+    "lines": {
+        "count": 1,
+        "data": [
+            {
+                "amount": 9900,
+                "currency": "usd",
+                "description": null,
+                "id": "su_1bfTBoL3o7blah",
+                "livemode": false,
+                "object": "line_item",
+                "period": {
+                    "end": 1370561027,
+                    "start": 1367969027
+                },
+                "plan": {
+                    "amount": 9900,
+                    "currency": "usd",
+                    "id": "HR99",
+                    "interval": "month",
+                    "interval_count": 1,
+                    "livemode": false,
+                    "name": "HR Solutions On-Call",
+                    "object": "plan",
+                    "trial_period_days": null
+                },
+                "proration": false,
+                "quantity": 1,
+                "type": "subscription"
+            }
+        ],
+        "object": "list",
+        "url": "/v1/invoices/in_2blahblahagain/lines"
+    },
+    "livemode": false,
+    "next_payment_attempt": null,
+    "object": "invoice",
+    "paid": true,
+    "period_end": 1367969027,
+    "period_start": 1367969027,
+    "starting_balance": 0,
+    "subtotal": 9900,
+    "total": 9900
+}

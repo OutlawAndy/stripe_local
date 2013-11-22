@@ -1,0 +1,12 @@
+{
+    "amount": 9900,
+    "currency": "usd",
+    "id": "HR99",
+    "interval": "month",
+    "interval_count": 1,
+    "livemode": false,
+    "metadata": {},
+    "name": "HR Solutions On-Call",
+    "object": "plan",
+    "trial_period_days": null
+}

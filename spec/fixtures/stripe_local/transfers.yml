@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  amount: 1
+  date: 2013-11-14 22:17:57
+  status: MyString
+  balance_transaction: MyString
+  description: MyString
+  metadata: MyText
+
+two:
+  amount: 1
+  date: 2013-11-14 22:17:57
+  status: MyString
+  balance_transaction: MyString
+  description: MyString
+  metadata: MyText

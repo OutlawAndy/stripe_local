@@ -1,0 +1,18 @@
+{
+    "client": {
+        "address": {
+            "city": "<%= m.fetch( :city, 'Lees Summit' ) %>",
+            "state": "<%= m.fetch( :state, 'MO' ) %>",
+            "street": "<%= m.fetch( :street, '429 NE Station Dr' ) %>",
+            "zip": "<%= m.fetch( :zip, 64086 ) %>"
+        },
+        "email": "<%= m.fetch( :email, 'outlawandy@gmail.com' ) %>",
+        "full_name": "<%= m.fetch( :full_name, 'John Applebrain' ) %>",
+        "organization": "<%= m.fetch( :organization, 'John''s Bon-Bons' ) %>",
+        "phone": "<%= m.fetch( :phone, '8167974635' ) %>"
+    },
+    "coupon": "<%= m.fetch( :coupon, nil ) %>",
+    "path": "complyability",
+    "plan": "<%= m.fetch( :plan, 'HR99') %>",
+    "stripe_card_token": "<%= m.fetch( :token, 'stub_token') %>"
+}

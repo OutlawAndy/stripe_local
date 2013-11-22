@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  coupon_id: MyString
+  subscription_id: MyString
+  start: 2013-10-31 22:40:57
+  end: 2013-10-31 22:40:57
+
+two:
+  coupon_id: MyString
+  subscription_id: MyString
+  start: 2013-10-31 22:40:57
+  end: 2013-10-31 22:40:57

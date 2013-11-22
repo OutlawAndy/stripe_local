@@ -1,0 +1,32 @@
+{
+    "account": {
+        "bank_name": "STRIPE TEST BANK",
+        "country": "US",
+        "currency": "usd",
+        "fingerprint": "Os7B4bbyVewMDVUT",
+        "id": "ba_2fOFGB7eur8QVV",
+        "last4": "6789",
+        "object": "bank_account",
+        "validated": "false",
+        "verified": "false"
+    },
+    "amount": 100,
+    "balance_transaction": "txn_2fOGkiBkDgpObU",
+    "currency": "usd",
+    "date": 1380535261,
+    "description": "a dollar for Don Atello",
+    "id": "tr_2fOGfKABdHu3uf",
+    "livemode": "false",
+    "metadata": {},
+    "object": "transfer",
+    "other_transfers": [
+        "tr_2fODmiKUnck7bj",
+        "tr_2fOGfKABdHu3uf",
+        "tr_2fOHVNt0wM8iIO",
+        "tr_2fOdARkVPa7l1Q",
+        "tr_2fOyxlx9hMcZGH"
+    ],
+    "recipient": "rp_2fOFKSa9bt2NNM",
+    "statement_descriptor": null,
+    "status": "paid"
+}

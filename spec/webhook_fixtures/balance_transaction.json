@@ -1,0 +1,23 @@
+{
+    "amount": -100,
+    "available_on": 1381140061,
+    "created": 1380535261,
+    "currency": "usd",
+    "description": "a dollar for Don Atello",
+    "fee": 25,
+    "fee_details": [
+        {
+            "amount": 25,
+            "application": null,
+            "currency": "usd",
+            "description": "Stripe processing fees",
+            "type": "stripe_fee"
+        }
+    ],
+    "id": "txn_2fOGkiBkDgpObU",
+    "net": -125,
+    "object": "balance_transaction",
+    "source": "tr_2fOGfKABdHu3uf",
+    "status": "available",
+    "type": "transfer"
+}

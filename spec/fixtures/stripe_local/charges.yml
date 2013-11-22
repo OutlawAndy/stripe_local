@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: MyString
+  customer_id: MyString
+  transaction_id: MyString
+  amount: 1
+  captured: false
+  refunded: false
+  paid: false
+  created: 2013-11-01 12:15:03
+  currency: MyString
+  amount_refunded: 1
+  description: MyString
+  invoice_id: MyString
+  failure_code: MyString
+  failure_message: MyString
+  metadata: MyText
+  card_id: MyString
+
+two:
+  id: MyString
+  customer_id: MyString
+  transaction_id: MyString
+  amount: 1
+  captured: false
+  refunded: false
+  paid: false
+  created: 2013-11-01 12:15:03
+  currency: MyString
+  amount_refunded: 1
+  description: MyString
+  invoice_id: MyString
+  failure_code: MyString
+  failure_message: MyString
+  metadata: MyText
+  card_id: MyString

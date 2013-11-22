@@ -1,0 +1,41 @@
+{
+    "account_balance": 0,
+    "cards": {
+        "count": 1,
+        "data": [
+            {
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "country": "US",
+                "customer": "cus_2J7PZ8ncCbR10Z",
+                "cvc_check": "pass",
+                "exp_month": 1,
+                "exp_year": 2014,
+                "fingerprint": "oIGflimx8B0svWgw",
+                "id": "cc_2J7Pscoh4jvFjJ",
+                "last4": "4242",
+                "name": "Connor Tumbleson",
+                "object": "card",
+                "type": "Visa"
+            }
+        ],
+        "object": "list",
+        "url": "/v1/customers/cus_2J7PZ8ncCbR10Z/cards"
+    },
+    "created": 1375398494,
+    "default_card": "cc_2J7Pscoh4jvFjJ",
+    "delinquent": "false",
+    "description": "Term: Thursday, August 1st, 2013 - Friday, August 1st, 2014",
+    "discount": null,
+    "email": "connor.tumbleson@gmail.com",
+    "id": "cus_2J7PZ8ncCbR10Z",
+    "livemode": "false",
+    "object": "customer",
+    "subscription": null
+}

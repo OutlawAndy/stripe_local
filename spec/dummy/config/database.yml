@@ -1,0 +1,17 @@
+development: &base
+  adapter: postgresql
+  encoding: unicode
+  database: dummy_development
+  pool: 5
+  username: Outlawandy
+  password:
+
+test:
+  <<: *base
+  database: dummy_test
+
+production:
+  <<: *base
+  database: dummy_production
+  username: dummy
+  pool: 25

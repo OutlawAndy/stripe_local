@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: MyString
+  amount: 1
+  currency: MyString
+  date: 2013-11-01 08:45:17
+  proration: false
+  description: MyString
+  metadata: MyText
+
+two:
+  id: MyString
+  amount: 1
+  currency: MyString
+  date: 2013-11-01 08:45:17
+  proration: false
+  description: MyString
+  metadata: MyText

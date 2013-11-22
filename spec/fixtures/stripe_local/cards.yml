@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: MyString
+  customer_id: 
+  name: MyString
+  exp_month: 1
+  exp_year: 1
+  brand: MyString
+  last4: MyString
+  cvc_check: MyString
+
+two:
+  id: MyString
+  customer_id: 
+  name: MyString
+  exp_month: 1
+  exp_year: 1
+  brand: MyString
+  last4: MyString
+  cvc_check: MyString

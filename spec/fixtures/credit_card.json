@@ -1,0 +1,18 @@
+"card": {
+    "id": "card_102VMn1Cmf55uWiegCrCV1A5",
+    "object": "card",
+    "last4": "4242",
+    "type": "Visa",
+    "exp_month": 8,
+    "exp_year": 2014,
+    "fingerprint": "Y7M2OsbpnbUz91ED",
+    "customer": null,
+    "country": "US",
+    "name": null,
+    "address_line1": null,
+    "address_line2": null,
+    "address_city": null,
+    "address_state": null,
+    "address_zip": null,
+    "address_country": null
+  }

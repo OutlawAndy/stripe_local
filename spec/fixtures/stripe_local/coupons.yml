@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: MyString
+  percent_off: 1
+  amount_off: 1
+  currency: MyString
+  duration: MyString
+  redeem_by: 2013-10-30 22:24:53
+  max_redemptions: 1
+  times_redeemed: 1
+  duration_in_months: 1
+
+two:
+  id: MyString
+  percent_off: 1
+  amount_off: 1
+  currency: MyString
+  duration: MyString
+  redeem_by: 2013-10-30 22:24:53
+  max_redemptions: 1
+  times_redeemed: 1
+  duration_in_months: 1

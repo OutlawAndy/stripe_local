@@ -1,0 +1,27 @@
+{
+    "application_fee_percent": null,
+    "cancel_at_period_end": false,
+    "canceled_at": null,
+    "current_period_end": 1386797566,
+    "current_period_start": 1384205566,
+    "customer": "cus_2vIuZmAfWK89Yk",
+    "ended_at": null,
+    "id": "su_2vIueLAzHmGhRG",
+    "object": "subscription",
+    "plan": {
+        "amount": 9900,
+        "currency": "usd",
+        "id": "HR99",
+        "interval": "month",
+        "interval_count": 1,
+        "livemode": false,
+        "name": "HR Solutions On-Call",
+        "object": "plan",
+        "trial_period_days": null
+    },
+    "quantity": 1,
+    "start": 1384205566,
+    "status": "active",
+    "trial_end": null,
+    "trial_start": null
+}
