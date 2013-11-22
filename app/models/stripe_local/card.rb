@@ -14,7 +14,7 @@ module StripeLocal
         hash.each_with_object({}) do |(k,v),h|
           key = case k.to_sym
           when :customer then :customer_id
-          when :type then :brand
+          when :type     then :brand
           when ->(x){attribute_method? x} then k.to_sym
           else next
           end

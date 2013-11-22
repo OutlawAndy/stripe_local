@@ -12,5 +12,6 @@ describe StripeLocal::Invoice do
     i.subtotal.should eq 9900
     i.lines(true).size.should be 1
     i.lines.first.amount.should eq 9900
+    i.lines.first.period_start.should eq "2013-05-07 18:23:47 -0500"
   end
 end

@@ -18,13 +18,17 @@ module StripeLocal
       def normalize attrs
         attrs.each_with_object({}) do |(k,v),h|
           key = case k.to_sym
-          when :id then next
+          when :id       then next
           when :customer then :customer_id
-          when :plan then h[:plan_id] = v.id and next
+          when :plan     then h[:plan_id] = v.id and next
           when ->(x){attribute_method? x} then k.to_sym
           else next
           end
-          h[key] = v
+          if v.is_a?(Numeric) && v > 1000000000
+            h[key] = Time.at( v )
+          else
+            h[key] = v
+          end
         end
       end
     end

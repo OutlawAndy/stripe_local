@@ -4,23 +4,13 @@ module StripeLocal
 
     self.primary_key = :id
 
-    has_one    :model, inverse_of: :customer
+    has_one    :model, inverse_of: :customer, class_name: "::#{StripeLocal::model_class}"
 
     has_many   :cards, inverse_of: :customer
 
-    has_one    :default_card, ->(c){ find_by id: c.read_attribute(:default_card) }
-
     has_one    :subscription, inverse_of: :customer
-    has_one    :discount, through: :subscription
-    has_one    :plan, through: :subscription
 
-    def metadata= hash
-      MultiJson.dump hash
-    end
-
-    def metadata
-      MultiJson.load read_attribute( :metadata ), symbolize_keys: true
-    end
+    has_one    :plan, through: :subscription, source: :plan
 
     class<<self
       #=!=#>>>
@@ -68,9 +58,8 @@ module StripeLocal
       def normalize params
         params.each_with_object({}) do |(k,v),h|
           key = case k.to_sym
-          when :id then :customer_id
-          when :cards then create_each_card( v.data ) and next
-          when :subscription then StripeLocal::Subscription.create( v ) and next
+          when :cards        then create_each_card( v.data ) and next
+          when :subscription then create_subscript( v )      and next
           when ->(x){attribute_method? x} then k.to_sym
           else next
           end
@@ -82,6 +71,10 @@ module StripeLocal
         cards.each do |card|
           StripeLocal::Card.create card.to_hash
         end
+      end
+
+      def create_subscript o
+        StripeLocal::Subscription.create( o.to_hash ) unless o.nil?
       end
     end
 

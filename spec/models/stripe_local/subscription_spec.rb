@@ -9,6 +9,7 @@ describe StripeLocal::Subscription do
     s.plan_id.should eq "HR99"
     s.customer_id.should eq "cus_2vIuZmAfWK89Yk"
     s.status.should eq "active"
+    s.start.should eq "2013-11-11 15:32:46 -0600"
   end
 
 end

@@ -27,10 +27,11 @@ module StripeLocal
       def normalize attrs
         attrs.each_with_object({}) do |(k,v),h|
           key = case k.to_sym
-          when :customer then :customer_id
-          when :card then h[:card_id] = v.id and next
-          when :invoice then :invoice_id
+          when :customer            then :customer_id
+          when :invoice             then :invoice_id
           when :balance_transaction then :transaction_id
+          when :card                then h[:card_id] = v.id       and next
+          when :created             then h[:created] = Time.at(v) and next
           when ->(x){attribute_method? x} then k.to_sym
           else next
           end

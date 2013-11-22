@@ -17,7 +17,11 @@ module StripeLocal
           when ->(x){ attribute_method? x } then k.to_sym
           else next
           end
-          h[key] = v
+          if v.is_a?(Numeric) && v > 1000000000
+            h[key] = Time.at( v )
+          else
+            h[key] = v
+          end
         end
       end
     end

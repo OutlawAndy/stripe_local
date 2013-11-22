@@ -23,18 +23,10 @@ module StripeLocal
       def time_writer *array_of_syms
         array_of_syms.each do |sym|
           define_method ":#{sym}=" do |epoch|
-            write_time sym, epoch.to_i
+            write_attribute sym, Time.at( epoch.to_i ) unless epoch.nil?
           end
         end
       end
-    end
-
-    def write_time sym, epoch
-      write_attribute sym, Time.at( epoch ) if epoch > 0
-    end
-
-    included do
-      private :write_time
     end
 
   end

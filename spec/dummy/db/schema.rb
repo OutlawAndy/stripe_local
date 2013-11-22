@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131122063517) do
+ActiveRecord::Schema.define(version: 20131122104223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20131122063517) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stripe_customer_id"
   end
 
   create_table "stripe_local_balances", force: true do |t|
@@ -178,8 +179,7 @@ ActiveRecord::Schema.define(version: 20131122063517) do
 
   add_index "stripe_local_plans", ["id"], name: "index_stripe_local_plans_on_id", unique: true, using: :btree
 
-  create_table "stripe_local_subscriptions", id: false, force: true do |t|
-    t.string   "id"
+  create_table "stripe_local_subscriptions", force: true do |t|
     t.string   "customer_id"
     t.string   "plan_id"
     t.string   "status"
@@ -196,7 +196,6 @@ ActiveRecord::Schema.define(version: 20131122063517) do
   end
 
   add_index "stripe_local_subscriptions", ["customer_id"], name: "index_stripe_local_subscriptions_on_customer_id", using: :btree
-  add_index "stripe_local_subscriptions", ["id"], name: "index_stripe_local_subscriptions_on_id", unique: true, using: :btree
   add_index "stripe_local_subscriptions", ["plan_id"], name: "index_stripe_local_subscriptions_on_plan_id", using: :btree
 
   create_table "stripe_local_transactions", id: false, force: true do |t|

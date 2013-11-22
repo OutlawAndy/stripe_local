@@ -68,8 +68,7 @@ class LoadStripeTables < ActiveRecord::Migration
     end
 		add_index :stripe_local_discounts, [ :coupon_id, :subscription_id ]
 
-    create_table :stripe_local_subscriptions, id: false do |t|
-			t.string :id, primary_key: true
+    create_table :stripe_local_subscriptions do |t|
       t.string :customer_id
 			t.string :plan_id
       t.string :status
@@ -84,7 +83,6 @@ class LoadStripeTables < ActiveRecord::Migration
 
       t.timestamps
     end
-		add_index :stripe_local_subscriptions, :id, unique: true
 		add_index :stripe_local_subscriptions, :customer_id
 		add_index :stripe_local_subscriptions, :plan_id
 

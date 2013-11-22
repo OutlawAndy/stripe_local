@@ -29,7 +29,7 @@ module StripeLocal
           when :invoice  then :invoice_id
           when :plan     then h[:plan_id] = v.id and next
           when :type     then h[:subscription] = (v == "subscription" ? true : false) and next
-          when :period   then h[:period_start] = v.start and h[:period_end] = v.end and next
+          when :period   then h[:period_start] = Time.at(v.start) and h[:period_end] = Time.at(v.end) and next
           when ->(x){attribute_method? x} then k.to_sym
           else next
           end

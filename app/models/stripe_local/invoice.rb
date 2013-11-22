@@ -18,16 +18,27 @@ module StripeLocal
         attrs.each_with_object({}) do |(k,v),h|
           key = case k.to_sym
           when :customer then :customer_id
-          when :charge then :charge_id
-          when :lines then
-            v.data.each do |item|
+          when :charge   then :charge_id
+          when :lines    then v.data.each do |item|
               StripeLocal::LineItem.create item.to_hash.merge({invoice_id: attrs.id})
             end and next
           when ->(x){attribute_method? x} then k.to_sym
           else next
           end
-          h[key] = v
+          if v.is_a?(Numeric) && v > 1000000000
+            h[key] = Time.at( v )
+          else
+            h[key] = v
+          end
         end
+      end
+
+      def succeed inv
+        #TODO: implement this
+      end
+
+      def fail inv
+        #TODO: implement this
       end
     end
 

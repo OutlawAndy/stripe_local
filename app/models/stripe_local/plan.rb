@@ -4,6 +4,8 @@ module StripeLocal
 
     self.primary_key = :id
 
+    has_many :subscriptions, inverse_of: :plan
+
     class<<self
       def create object
         if found = find_by( id: object[:id] )

@@ -3,7 +3,10 @@ require "stripe_local/webhook"
 
 module StripeLocal
 
+  mattr_accessor :model_class
+
   def stripe_customer
+    StripeLocal::model_class = self
     belongs_to :customer, inverse_of: :model, foreign_key: :stripe_customer_id, class_name: 'StripeLocal::Customer'
     setup_delegate
     include InstanceMethods
@@ -22,9 +25,9 @@ module StripeLocal
 private
   def setup_delegate
     class_eval <<-DEF
-      def method_missing name, *args, &block
+      def method_missing method, *args, &block
         if self.customer && self.customer.respond_to?( method )
-          self.customer.send name, *args, &block
+          self.customer.send method, *args, &block
         else
           super
         end
