@@ -8,7 +8,7 @@ module StripeLocal
 
     has_many   :cards, inverse_of: :customer
 
-    has_one    :default_card, ->(s){ where( id: s.read_attribute(:default_card)) }
+    has_one    :default_card, ->(c){ find_by id: c.read_attribute(:default_card) }
 
     has_one    :subscription, inverse_of: :customer
     has_one    :discount, through: :subscription
@@ -51,14 +51,14 @@ module StripeLocal
         plan = params.delete( :plan )
         lines = params.delete( :lines ) || []
 
-        customer = stripe_object.create( params )
+        customer = Stripe::Customer.create( params )
 
         lines.each do |item|
           customer.add_invoice_item( {currency: 'usd'}.merge item )
-        end unless lines.empty?
+        end
 
         customer.update_subscription({ plan: plan })
-        create( normalize customer ).id
+        create( customer ).id
       end
 
       def create params
@@ -69,8 +69,8 @@ module StripeLocal
         params.each_with_object({}) do |(k,v),h|
           key = case k.to_sym
           when :id then :customer_id
-          when :cards then create_cards( v.data ) and next
-          when :subscription then Subscription.create( v ) and next
+          when :cards then create_each_card( v.data ) and next
+          when :subscription then StripeLocal::Subscription.create( v ) and next
           when ->(x){attribute_method? x} then k.to_sym
           else next
           end
@@ -78,9 +78,9 @@ module StripeLocal
         end
       end
 
-      def create_cards data
-        data.each do |card|
-          Card.create card.to_hash
+      def create_each_card cards
+        cards.each do |card|
+          StripeLocal::Card.create card.to_hash
         end
       end
     end

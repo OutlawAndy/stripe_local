@@ -3,11 +3,7 @@ module StripeLocal
     primary_key = :id
 
     has_many   :charges,  inverse_of:  :card
-    belongs_to :customer, inverse_of:  :cards,
-                          primary_key: :customer_id,
-                          foreign_key: :customer_id,
-                          class_name:  "Member"
-
+    belongs_to :customer, inverse_of:  :cards
 
     class<<self
       def create attrs_hash
