@@ -8,6 +8,10 @@ module StripeLocal
 
     has_many   :cards, inverse_of: :customer
 
+    has_many   :invoices, inverse_of: :customer
+
+    has_many   :charges, inverse_of: :customer
+
     has_one    :subscription, inverse_of: :customer
 
     has_one    :plan, through: :subscription, source: :plan

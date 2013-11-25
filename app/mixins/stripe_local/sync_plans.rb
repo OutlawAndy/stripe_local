@@ -19,7 +19,7 @@ module StripeLocal
 
     def synchronize_create
       hash = self.attributes
-      unless !!hash.delete :synced
+      unless !!hash.delete( :synced )
         Stripe::Plan.create hash #TODO: handle asynchronously
       end
     end

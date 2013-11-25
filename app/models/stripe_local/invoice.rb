@@ -4,6 +4,7 @@ module StripeLocal
 
     has_many :lines,  inverse_of: :invoice, class_name: "LineItem"
     belongs_to :charge, inverse_of: :invoice
+    belongs_to :customer, inverse_of: :invoices
 
     self.primary_key = :id
 

@@ -1,18 +1,17 @@
 require 'spec_helper'
 
 
-# describe StripeLocal::Customer do
-#   let( :dummy ) { Client.create name: "John Appleseed", email: "jappseed@gmail.com", password: "password" }
-#   let( :response ) { Load::Erb.stripe_response({ customer_id: "ABC-123", plan_id: "GIN150", interval: "month", amount: 14999 }) }
-#
-#   before do
-#     Stripe.api_key = "9M1iTZf21gBPtf6B2fViF8gVsD1j7QHF"
-#   end
-#
-#   it "decorates AR models that reference it with the macro 'stripe_customer'" do
-#
-#     dummy.stripe_customer_id = StripeLocal::Customer.signup( { plan: "HR99", card: "tok_2vIxcJTyoTl8TP" } )
-#     dummy.account_balance.must_match 0
-#   end
-#
-# end
+describe StripeLocal::Customer do
+  let(:response) { File.read("./spec/webhook_fixtures/customer_creation_response.json") }
+  let(:stripe_customer) { Stripe::StripeObject.construct_from(MultiJson.load(response)) }
+  let(:client) { ::Client.create( name: "Test Case", email: "test@test.com", password: "password" ) }
+
+  it "can normalize a customer on create" do
+    Stripe::Customer.should_receive( :create ).and_return stripe_customer
+    stripe_customer.should_receive :update_subscription
+    StripeLocal::Customer.should_receive( :create ).with( stripe_customer ).and_call_original
+    StripeLocal::Customer.should_receive( :normalize ).with( stripe_customer ).and_call_original
+    client.signup( card: "token", plan: "plan" )
+  end
+
+end
