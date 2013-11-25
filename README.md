@@ -20,7 +20,7 @@ Feel free to fork and hack. You are of course welcome to do want you want with t
 
 ### How I see it
 
-The gem is hosted at [Rubygems.org](http://rubygems.org) like any other gem and is available for use in a Rails project by including it in your gem file
+The gem is hosted at [Rubygems.org](https://rubygems.org/gems/stripe_local) like any other gem and is available for use in a Rails project by including it in your gem file
 
     gem 'stripe_local'
 
