@@ -2,5 +2,5 @@
 /config/database.yml
 /log/*.log
 /public/source_maps/
-# /public/assets
 /tmp
+/*.gem
