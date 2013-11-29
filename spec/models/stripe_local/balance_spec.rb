@@ -19,21 +19,21 @@ describe StripeLocal::Balance do
 
 	its( :previous_pending ) { should be 29900 }
 
-  # describe "redundant `StripeLocal::balance.available` webhook is received" do
-  #   before do
-  #     @count = StripeLocal::Balance.count
-  #     @updated = StripeLocal::Balance.last.updated_at.to_i
-  #   end
-  #   before { Timecop.travel 1.day.from_now }
-  #   after  { Timecop.return }
-  #
-  #   it "keeps StripeLocal::Balance updated, but doesn't create redundant records" do
-  #     StripeLocal::Balance.event({ pending: 19900, available: 19900 })
-  #
-  #     StripeLocal::Balance.count.should eq @count
-  #     StripeLocal::Balance.last.updated_at.to_i.should > @updated
-  #   end
-  # end
+  describe "redundant `StripeLocal::balance.available` webhook is received" do
+    before do
+      @count = StripeLocal::Balance.count
+      @updated = StripeLocal::Balance.last.updated_at.to_i
+    end
+    before { Timecop.travel 1.day.from_now }
+    after  { Timecop.return }
+
+    it "keeps StripeLocal::Balance updated, but doesn't create redundant records" do
+      StripeLocal::Balance.event({ pending: 19900, available: 19900 })
+
+      StripeLocal::Balance.count.should eq @count
+      StripeLocal::Balance.last.updated_at.to_i.should > @updated
+    end
+  end
 
 	describe "`balance.available` webhook signifies a changed balance" do
 		before { @count = StripeLocal::Balance.count }

@@ -1,6 +1,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../spec/dummy/config/environment', __FILE__)
 require 'rspec/rails'
+require 'timecop'
+require 'vcr'
 require 'database_cleaner'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each {|f| require f}

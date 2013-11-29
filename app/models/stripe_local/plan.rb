@@ -5,6 +5,9 @@ module StripeLocal
     self.primary_key = :id
 
     has_many :subscriptions, inverse_of: :plan
+    has_many :members, through: :subscriptions,
+                    inverse_of: :plan,
+                        source: :customer
 
     class<<self
       def create object

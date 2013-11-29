@@ -4,7 +4,7 @@ module StripeLocal
 
     self.primary_key = :id
 
-    has_one    :model, inverse_of: :customer, class_name: "::#{StripeLocal::model_class}"
+    belongs_to :model, inverse_of: :customer, class_name: "::#{StripeLocal::model_class}"
 
     has_many   :cards, inverse_of: :customer
 
@@ -14,7 +14,9 @@ module StripeLocal
 
     has_one    :subscription, inverse_of: :customer
 
-    has_one    :plan, through: :subscription, source: :plan
+    has_one    :plan, through: :subscription,
+                   inverse_of: :members,
+                       source: :plan
 
     class<<self
       #=!=#>>>
