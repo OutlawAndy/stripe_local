@@ -24,9 +24,9 @@ The gem is hosted at [Rubygems.org](https://rubygems.org/gems/stripe_local) like
 
     gem 'stripe_local'
 
-After a `bundle install` you should have access to the generators  (not yet implemented)
+After a `bundle install` you'll need to generate, and run the migrations..
 
-    rails g stripe_local:install [CUSTOMER_CLASS_NAME]
+    rake stripe_local:install:migrations && rake db:migrate
 
 Stripe\_local integrates with your application via a _customer class_
 
@@ -36,7 +36,7 @@ The _customer class_ does not need to be named *Customer*.  It just needs to be 
       stripe_customer
     end
 
-this essentially includes a few modules into the class which add a one-to-one relationship with a `Stripe::Customer` and form a `SimpleDelegator` *like* relationship.
+this essentially mixes in a few modules which add a one-to-one relationship with a `Stripe::Customer` and form a `SimpleDelegator` *like* relationship.
 
 Once one of your *customers* has a `Stripe::Customer` you may call methods on your object as if it were itself a `Stripe::Customer`
 
