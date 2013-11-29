@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131122104223) do
+ActiveRecord::Schema.define(version: 20131122063517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20131122104223) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "stripe_customer_id"
   end
 
   create_table "stripe_local_balances", force: true do |t|
@@ -99,12 +98,14 @@ ActiveRecord::Schema.define(version: 20131122104223) do
     t.boolean  "delinquent"
     t.string   "description"
     t.string   "email"
+    t.integer  "model_id"
     t.text     "metadata"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "stripe_local_customers", ["id"], name: "index_stripe_local_customers_on_id", unique: true, using: :btree
+  add_index "stripe_local_customers", ["model_id"], name: "index_stripe_local_customers_on_model_id", using: :btree
 
   create_table "stripe_local_discounts", force: true do |t|
     t.string   "coupon_id"

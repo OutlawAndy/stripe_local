@@ -7,11 +7,13 @@ class LoadStripeTables < ActiveRecord::Migration
       t.boolean :delinquent
       t.string  :description
       t.string  :email
+      t.integer :model_id
       t.text    :metadata
 
       t.timestamps
     end
 		add_index :stripe_local_customers, :id, unique: true
+		add_index :stripe_local_customers, :model_id
 
     create_table :stripe_local_cards, id: false do |t|
       t.string     :id, primary_key: true

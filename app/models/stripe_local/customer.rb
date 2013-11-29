@@ -93,6 +93,7 @@ module StripeLocal
 #   t.string   :description
 #   t.string   :email
 #   t.text     :metadata
+#   t.integer  :model_id
 #   t.timestamps
 
 #=¡=>>>

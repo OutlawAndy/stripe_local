@@ -18,7 +18,4 @@ describe StripeLocal::Customer do
     StripeLocal::model_class.new.should be_a Client
   end
 
-  it "can sign up for new account" do
-
-  end
 end
