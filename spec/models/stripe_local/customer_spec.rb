@@ -9,9 +9,11 @@ describe StripeLocal::Customer do
   it "can normalize a customer on create" do
     Stripe::Customer.should_receive( :create ).and_return stripe_customer
     stripe_customer.should_receive :update_subscription
-    StripeLocal::Customer.should_receive( :create ).with( stripe_customer ).and_call_original
-    StripeLocal::Customer.should_receive( :normalize ).with( stripe_customer ).and_call_original
-    client.signup( card: "token", plan: "plan" )
+    StripeLocal::Customer.should_receive( :create ).and_call_original
+    StripeLocal::Customer.should_receive( :normalize ).and_call_original
+    client.signup( {card: "token", plan: "plan"} )
+
+    client.reload.customer.id.should eq "cus_123"
   end
 
   it "refers to StripeLocal mattr_accessor for application level model_class" do

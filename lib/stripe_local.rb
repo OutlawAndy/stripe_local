@@ -7,42 +7,62 @@ module StripeLocal
 
   def stripe_customer
     StripeLocal::model_class = self
-    belongs_to :customer, inverse_of: :model, foreign_key: :stripe_customer_id, class_name: 'StripeLocal::Customer'
-    setup_delegate
+    has_one :customer, inverse_of: :model, class_name: 'StripeLocal::Customer', foreign_key: :model_id
     include InstanceMethods
   end
 
   module InstanceMethods
 
-    # for argument details, see StripeLocal::Customer#signup definition
+    #=!=#>>>
+    #
+    # this is the primary interface for subscribing.
+    #
+    # [params]
+    #     * +card+  (required)           ->    the token returned by stripe.js
+    #     * +plan+  (required)           ->    the id of the plan being subscribed to
+    #     * +email+  (optional)          ->    the client's email address
+    #     * +description+  (optional)    ->    a description to attach to the stripe object for future reference
+    #     * +coupon+  (optional)         ->    the id of a coupon if the subscription should be discounted
+    #     * +lines+   (optional)         ->    an array of (amount,description) tuples
+    # ```
+    #    :card => "tok_abc123",
+    #    :plan => "MySaaS",
+    #    :email => subscriber.email,
+    #    :description => "a one year subscription to our flagship service at $99.00 per month"
+    #    :lines => [
+    #       [ 20000, "a one time setup fee of $200.00 for new members" ]
+    #    ]
+    # ```
+    #=¡=#>>>
+
     def signup params
-      stripe_customer_id = StripeLocal::Customer.signup(params)
-      save
+      plan  = params.delete( :plan )
+      lines = params.delete( :lines ) || []
+
+      customer = Stripe::Customer.create( params )
+
+      lines.each do |item|
+        customer.add_invoice_item( {currency: 'usd'}.merge item )
+      end
+
+      customer.update_subscription({ plan: plan })
+
+      StripeLocal::Customer.create( {model_id: self.id}.merge customer.to_hash )
+    end
+
+    def method_missing method, *args, &block
+      if self.customer.present? && self.customer.respond_to?( method )
+        self.customer.send method, *args, &block
+      else
+        super
+      end
+    end
+
+    def respond_to_missing? method, include_private = false
+      self.customer.present? && self.customer.respond_to?( method ) || super
     end
 
   end
-
-private
-  def setup_delegate
-    class_eval <<-DEF
-      def method_missing method, *args, &block
-        if self.customer && self.customer.respond_to?( method )
-          self.customer.send method, *args, &block
-        else
-          super
-        end
-      end
-
-      def respond_to_missing? method, include_private = false
-        super unless self.customer && self.customer.respond_to?( method )
-      end
-
-      def respond_to? method, include_private = false
-        super unless self.customer && self.customer.respond_to?( method )
-      end
-    DEF
-  end
-
 end
 
 ActiveRecord::Base.extend StripeLocal

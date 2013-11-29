@@ -42,7 +42,7 @@
         "canceled_at": null,
         "current_period_end": 1381431124,
         "current_period_start": 1378839124,
-        "customer": "",
+        "customer": "cus_123",
         "ended_at": null,
         "id": "su_102Y2J1Cmf55uWiekSeb7fb0",
         "object": "subscription",

@@ -1,3 +1,4 @@
+<a href="http://badge.fury.io/rb/stripe_local"><img src="https://badge.fury.io/rb/stripe_local@2x.png" alt="Gem Version" height="18"></a>
 # &spades; _Stripe Local_
 
 A rails engine that maintains a local store of all your Stripe resources, keeping everything up to date with Stripe via their API and Webhook service.
@@ -59,7 +60,9 @@ Use the generated `signup` instance method to create a `Stripe::Customer` for th
 
 ## License
 
-(The MIT License)   *[Andy Cohen](mailto:outlawandy@gmail.com?)&nbsp;&copy;&nbsp;2012-2014*
+&copy; 2014 *[Andy Cohen](mailto:outlawandy@gmail.com?)* (setpoint precision LLC)
+
+MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
