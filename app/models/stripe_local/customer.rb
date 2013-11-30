@@ -4,21 +4,26 @@ module StripeLocal
 
     self.primary_key = :id
 
-    belongs_to :model,   inverse_of: :customer,
-                        foreign_key: "model_id",
-                         class_name: "::#{StripeLocal::model_class}"
+    belongs_to :model,    inverse_of:  :customer,
+                          foreign_key: "model_id",
+                          class_name:  "::#{StripeLocal::model_class}"
 
-    has_many   :cards, inverse_of: :customer, class_name: 'StripeLocal::Card'
+    has_many   :cards,    inverse_of: :customer,
+                          class_name: 'StripeLocal::Card'
 
-    has_many   :invoices, inverse_of: :customer
+    has_many   :invoices, inverse_of: :customer,
+                          class_name: 'StripeLocal::Invoice'
 
-    has_many   :charges, inverse_of: :customer
+    has_many   :charges,  inverse_of: :customer,
+                          class_name: 'StripeLocal::Charge'
 
-    has_one    :subscription, inverse_of: :customer
+    has_one    :subscription, inverse_of: :customer,
+                              class_name: 'StripeLocal::Subscription'
 
     has_one    :plan, through: :subscription,
                    inverse_of: :members,
-                       source: :plan
+                       source: :plan,
+                   class_name: 'StripeLocal::Card'
 
     class<<self
 

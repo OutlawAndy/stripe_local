@@ -41,6 +41,15 @@ module StripeLocal
       def fail inv
         #TODO: implement this
       end
+
+      def paid
+        where paid: true
+      end
+
+      def unpaid
+        where paid: false
+      end
+      alias :failed :unpaid
     end
 
 

@@ -5,9 +5,12 @@ module StripeLocal
     self.primary_key = :id
 
     has_many :subscriptions, inverse_of: :plan
-    has_many :members, through: :subscriptions,
-                    inverse_of: :plan,
+    has_many :line_items, inverse_of: :plan
+    has_many :members,  through: :subscriptions,
+                        inverse_of: :plan,
                         source: :customer
+    has_many :invoices, through: :line_items,
+                        source: :invoice
 
     class<<self
       def create object

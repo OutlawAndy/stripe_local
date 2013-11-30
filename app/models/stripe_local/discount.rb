@@ -4,6 +4,9 @@ module StripeLocal
 
     time_writer :start, :end
 
+    belongs_to :customer, inverse_of: :discount
+    belongs_to :coupon,   inverse_of: :discount
+
     class<<self
       def create object
         super normalize object

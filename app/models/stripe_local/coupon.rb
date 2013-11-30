@@ -6,6 +6,8 @@ module StripeLocal
 
     time_writer :redeem_by
 
+    has_many :discounts, inverse_of: :coupon
+    has_many :customers, through: :discounts, source: :customer
 
   #=!=#>>>
   # string   :id

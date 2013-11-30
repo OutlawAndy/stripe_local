@@ -6,6 +6,9 @@ module StripeLocal
 
     time_writer :created, :available_on
 
+
+    belongs_to :source, polymorphic: true
+
     class<<self
       def create object
         super normalize( object )
@@ -25,6 +28,14 @@ module StripeLocal
             h[key] = v
           end
         end
+      end
+
+      def pending
+        where 'available_on < ?', Time.now
+      end
+
+      def available
+        where 'available_on > ?', Time.now
       end
     end
 

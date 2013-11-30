@@ -11,15 +11,15 @@ describe StripeLocal::Customer do
     stripe_customer.should_receive :update_subscription
     StripeLocal::Customer.should_receive( :create ).and_call_original
     StripeLocal::Customer.should_receive( :normalize ).and_call_original
-    client.signup( {card: "token", plan: "plan"} )
+    client.signup( {card: "token", plan: "GIN100"} )
 
     client.customer.id.should eq "cus_123"
 
     client.subscription.plan_id.should eq "GIN100"
   end
 
-  it "refers to StripeLocal mattr_accessor for application level model_class" do
-    StripeLocal::model_class.new.should be_a Client
+  it "derives its model association via the StripeLocal method :model_class" do
+    StripeLocal.model_class.new.should be_a Client
   end
 
 end
