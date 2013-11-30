@@ -5,9 +5,9 @@ A rails engine that maintains a local store of all your Stripe resources, keepin
 Manages the complexities of keeping two data sources in sync while providing the speed and simplicity of dealing with purely local data in a purely synchronous fashion.
 
 ## <b style="color:red;">[</b>UNDER CONSTRUCTION<b style="color:red;">]</b>
-### Not in running condition!
+### Not considered "Production Ready"
 
-I had considered waiting to open source this project untill it was something I would be proud to put my name on.  However, my free time is limited and there is no telling how long it might have taken me.
+I had considered waiting to open source this project untill it was something really sturdy.  However, my free time is limited and there is no telling how long it might have taken me.
 
 My hope is that some of you will see some potential and dig in to help me get it working.  Please don't be shy, I don't claim to be an expert and I am open to your ideas for improvement.
 
