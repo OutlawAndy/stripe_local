@@ -55,10 +55,6 @@ module StripeLocal
       end
     end
 
-    def metadata= so
-      MultiJson.dump so.to_hash
-    end
-
     def metadata
       MultiJson.load read_attribute( :metadata ), symbolize_keys: true
     end
