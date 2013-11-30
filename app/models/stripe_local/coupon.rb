@@ -2,6 +2,8 @@ module StripeLocal
   class Coupon < ActiveRecord::Base
     include ObjectAdapter
 
+    self.primary_key = :id
+
     time_writer :redeem_by
 
 

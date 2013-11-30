@@ -50,6 +50,10 @@ module StripeLocal
       StripeLocal::Customer.create( {model_id: self.id}.merge customer.to_hash )
     end
 
+    def customer
+      @customer ||= StripeLocal::Customer.find_by( model_id: id )
+    end
+
     def method_missing method, *args, &block
       if self.customer.present? && self.customer.respond_to?( method )
         self.customer.send method, *args, &block

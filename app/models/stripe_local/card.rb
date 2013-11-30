@@ -1,6 +1,6 @@
 module StripeLocal
   class Card < ActiveRecord::Base
-    primary_key = :id
+    self.primary_key = :id
 
     has_many   :charges,  inverse_of:  :card
     belongs_to :customer, inverse_of:  :cards

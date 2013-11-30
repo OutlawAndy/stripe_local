@@ -13,7 +13,9 @@ describe StripeLocal::Customer do
     StripeLocal::Customer.should_receive( :normalize ).and_call_original
     client.signup( {card: "token", plan: "plan"} )
 
-    client.reload.customer.id.should eq "cus_123"
+    client.customer.id.should eq "cus_123"
+
+    client.subscription.plan_id.should eq "GIN100"
   end
 
   it "refers to StripeLocal mattr_accessor for application level model_class" do
