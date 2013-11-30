@@ -36,6 +36,7 @@ module StripeLocal
           key = case k.to_sym
           when :cards        then create_each_card( v.data ) and next
           when :subscription then create_subscription( v )   and next
+          when :metadata     then h[:metadata] = MultiJson.dump( v.to_hash ) and next
           when ->(x){attribute_method? x} then k.to_sym
           else next
           end
@@ -52,6 +53,14 @@ module StripeLocal
       def create_subscription object
         StripeLocal::Subscription.create( object.to_hash ) unless object.nil?
       end
+    end
+
+    def metadata= so
+      MultiJson.dump so.to_hash
+    end
+
+    def metadata
+      MultiJson.load read_attribute( :metadata ), symbolize_keys: true
     end
 
 #=!=>>>

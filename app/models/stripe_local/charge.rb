@@ -11,8 +11,8 @@ module StripeLocal
 
     time_writer :created
 
-    def metadata= hash
-      MultiJson.dump hash
+    def metadata= so
+      MultiJson.dump so.to_hash
     end
 
     def metadata
@@ -32,6 +32,7 @@ module StripeLocal
           when :balance_transaction then :transaction_id
           when :card                then h[:card_id] = v.id       and next
           when :created             then h[:created] = Time.at(v) and next
+          when :metadata            then h[:metadata] = MultiJson.dump( v.to_hash ) and next
           when ->(x){attribute_method? x} then k.to_sym
           else next
           end

@@ -10,8 +10,8 @@ module StripeLocal
 
     time_writer :period_start, :period_end
 
-    def metadata= hash
-      MultiJson.dump hash
+    def metadata= so
+      MultiJson.dump so.to_hash
     end
 
     def metadata
@@ -28,6 +28,7 @@ module StripeLocal
           key = case k.to_sym
           when :invoice  then :invoice_id
           when :plan     then h[:plan_id] = v.id and next
+          when :metadata then h[:metadata] = MultiJson.dump( v.to_hash ) and next
           when :type     then h[:subscription] = (v == "subscription" ? true : false) and next
           when :period   then h[:period_start] = Time.at(v.start) and h[:period_end] = Time.at(v.end) and next
           when ->(x){attribute_method? x} then k.to_sym
