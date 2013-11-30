@@ -51,11 +51,11 @@ module StripeLocal
     end
 
     def customer
-      @customer ||= StripeLocal::Customer.find_by( model_id: id )
+      StripeLocal::Customer.find_by( model_id: id )
     end
 
     def method_missing method, *args, &block
-      if self.customer.present? && self.customer.respond_to?( method )
+      if self.customer && self.customer.respond_to?( method )
         self.customer.send method, *args, &block
       else
         super
@@ -63,7 +63,7 @@ module StripeLocal
     end
 
     def respond_to_missing? method, include_private = false
-      self.customer.present? && self.customer.respond_to?( method ) || super
+      self.customer && self.customer.respond_to?( method ) || super
     end
 
   end
