@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stripe_local (0.1.3)
+    stripe_local (0.2.2)
       multi_json (~> 1.0)
       rails (~> 4.0.0)
       stripe (~> 1.8.8)

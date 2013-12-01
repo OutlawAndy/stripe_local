@@ -24,8 +24,8 @@ module StripeLocal
         attrs.each_with_object({}) do |(k,v),h|
           key = case k.to_sym
           when :invoice  then :invoice_id
-          when :plan     then h[:plan_id] = v.id and next
-          when :metadata then h[:metadata] = MultiJson.dump( v.to_hash ) and next
+          when :plan     then h[:plan_id]  = ( v.nil? ? "" : v.id ) and next  # will be nil if this is a one off charge
+          when :metadata then h[:metadata] = MultiJson.dump( v.try :to_hash ) and next
           when :type     then h[:subscription] = (v == "subscription" ? true : false) and next
           when :period   then h[:period_start] = Time.at(v.start) and h[:period_end] = Time.at(v.end) and next
           when ->(x){attribute_method? x} then k.to_sym
@@ -36,19 +36,21 @@ module StripeLocal
       end
     end
 
-  #=!=#>>>
-  # string   :id
-  # string   :invoice_id
-  # boolean  :subscription
-  # integer  :amount
-  # string   :currency
-  # boolean  :proration
-  # datetime :period_start
-  # datetime :period_end
-  # integer  :quantity
-  # string   :plan_id
-  # string   :description
-  # text     :metadata
-  #=¡=#>>>
   end
+#=!=#
+# ==Database Schema
+#
+# string   :id
+# string   :invoice_id
+# boolean  :subscription
+# integer  :amount
+# string   :currency
+# boolean  :proration
+# datetime :period_start
+# datetime :period_end
+# integer  :quantity
+# string   :plan_id
+# string   :description
+# text     :metadata
+#=¡=#
 end

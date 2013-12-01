@@ -44,5 +44,10 @@ module StripeLocal
     end
     alias :inspect :to_s
   end
-
+#=!=#
+# ==Database Schema
+#
+# integer  :available
+# integer  :pending
+#=¡=#
 end

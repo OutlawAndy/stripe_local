@@ -35,11 +35,11 @@ module StripeLocal
       end
 
       def succeed inv
-        #TODO: implement this
+        find( inv.id ).update_attributes closed: true, paid: true, next_payment_attempt: nil
       end
 
       def fail inv
-        #TODO: implement this
+        find( inv.id ).update_attributes paid: false
       end
 
       def paid
@@ -53,25 +53,27 @@ module StripeLocal
     end
 
 
-  #=!=#>>>
-  # string   :id
-  # string   :customer_id
-  # integer  :amount_due
-  # integer  :subtotal
-  # integer  :total
-  # boolean  :attempted
-  # integer  :attempt_count
-  # boolean  :paid
-  # boolean  :closed
-  # datetime :date
-  # datetime :period_start
-  # datetime :period_end
-  # string   :currency
-  # integer  :starting_balance
-  # integer  :ending_balance
-  # string   :charge_id
-  # integer  :discount
-  # datetime :next_payment_attempt
-  #=¡=#>>>
   end
+#=!=#
+# ==Database Schema
+#
+# string   :id
+# string   :customer_id
+# integer  :amount_due
+# integer  :subtotal
+# integer  :total
+# boolean  :attempted
+# integer  :attempt_count
+# boolean  :paid
+# boolean  :closed
+# datetime :date
+# datetime :period_start
+# datetime :period_end
+# string   :currency
+# integer  :starting_balance
+# integer  :ending_balance
+# string   :charge_id
+# integer  :discount
+# datetime :next_payment_attempt
+#=¡=#
 end

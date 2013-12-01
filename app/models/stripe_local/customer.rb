@@ -59,18 +59,17 @@ module StripeLocal
       MultiJson.load read_attribute( :metadata ), symbolize_keys: true
     end
 
-#=!=>>>
-#       ~<Schema>~
-#   t.string   :id
-#   t.integer  :account_balance
-#   t.string   :default_card
-#   t.boolean  :delinquent
-#   t.string   :description
-#   t.string   :email
-#   t.text     :metadata
-#   t.integer  :model_id
-#   t.timestamps
-
-#=¡=>>>
   end
+#=!=#
+# ==Database Schema
+#
+# string   :id
+# integer  :account_balance
+# string   :default_card
+# boolean  :delinquent
+# string   :description
+# string   :email
+# text     :metadata
+# integer  :model_id
+#=¡=#
 end
