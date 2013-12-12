@@ -19,7 +19,7 @@ describe StripeLocal::Customer do
   end
 
   it "derives its model association via the StripeLocal method :model_class" do
-    StripeLocal.model_class.new.should be_a Client
+    StripeLocal.model_class.should eq ::Client
   end
 
 end

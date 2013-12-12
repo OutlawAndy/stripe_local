@@ -7,19 +7,13 @@ Manages the complexities of keeping two data sources in sync while providing the
 ## <b style="color:red;">[</b>UNDER CONSTRUCTION<b style="color:red;">]</b>
 ### Not considered "Production Ready"
 
-I had considered waiting to open source this project untill it was something really sturdy.  However, my free time is limited and there is no telling how long it might have taken me.
+StripeLocal is an attempt at extracting a framework for Stripe Integration that I have built into several medium/large scale CRM projects.
 
-My hope is that some of you will see some potential and dig in to help me get it working.  Please don't be shy, I don't claim to be an expert and I am open to your ideas for improvement.
-
-StripeLocal is an extraction of a framework for Stripe Integration that I have built into several large CRM projects.  There are likely some places in the code that still rely on the application it was extracted from. If you find such code please create an issue or fix it yourself and submit a pull request.
-
-This is my first Rails Engine and I am still learning the ends and outs of building an engine. If you find something I am doing terribly wrong, please bring it to my attention by opening an issue. I appreciate your help.
+This is my first Rails Engine and I am still learning the ends and outs of building one. If you find something I am doing terribly wrong, please bring it to my attention by opening an issue. I appreciate your help.
 
 
 ### Pull Requests are highly encouraged!
 Feel free to fork and hack. You are of course welcome to do want you want with the code. However, I do plan to stay active in developing this code base and would like to see it become a real community effort.
-
-### How I see it
 
 The gem is hosted at [Rubygems.org](https://rubygems.org/gems/stripe_local) like any other gem and is available for use in a Rails project by including it in your gem file
 
@@ -29,11 +23,13 @@ After a `bundle install` you'll need to generate, and run the migrations..
 
     rake stripe_local:install:migrations && rake db:migrate
 
-Stripe\_local integrates with your application via a _customer class_
+### How I see it
 
-The _customer class_ does not need to be named *Customer*.  It just needs to be an active record class and contain a call to a special class macro in its definition
+StripeLocal overlapse your application in one particular spot, the _customer_
 
-    class ClassName < ActiveRecord::Base
+The _customer class_ does not need to be named `Customer`.  It can be any ActiveRecord model, specify which model in your application with a call to a special class macro in the definition
+
+    class MyClassName < ActiveRecord::Base
       stripe_customer
     end
 
@@ -41,7 +37,7 @@ this essentially mixes in a few modules which add a one-to-one relationship with
 
 Once one of your *customers* has a `Stripe::Customer` you may call methods on your object as if it were itself a `Stripe::Customer`
 
-Use the generated `signup` instance method to create a `Stripe::Customer` for the object
+Use the generated `signup` instance method to create a `Stripe::Customer` linked with your instance.
 
     my_client.signup({
       card: "card_token",
@@ -54,9 +50,18 @@ Use the generated `signup` instance method to create a `Stripe::Customer` for th
     })
 
     my_client.account_balance  #=> 0
+    my_client.default_card.id  #=> card_xxxabc123
 
+You'll need to create a webhook address in your Stripe Account using the Stripe Dashboard. It should point to
 
+    https://yourhostdomain.com/webhook/events
 
+Assuming you had webhooks setup in the previous example.
+
+    my_client.invoices.last.paid?  #=> true
+    my_client.charges.last         #=> <#StripeLocal::Charge ch_123abc>
+
+more to come...
 
 ## License
 
