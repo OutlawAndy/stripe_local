@@ -50,7 +50,8 @@ Use the generated `signup` instance method to create a `Stripe::Customer` linked
     })
 
     my_client.account_balance  #=> 0
-    my_client.default_card.id  #=> card_xxxabc123
+    my_client.default_card     #=> card_xxxabc123
+    my_client.cards.first.id   #=> card_xxxabc123
 
 You'll need to create a webhook address in your Stripe Account using the Stripe Dashboard. It should point to
 
