@@ -1,5 +1,5 @@
 module StripeLocal
-	module WebhooksController < ApplicationController
+	class WebhooksController < ApplicationController
     def events
 			begin
 				_event_ = Stripe::Event.retrieve params[:id]

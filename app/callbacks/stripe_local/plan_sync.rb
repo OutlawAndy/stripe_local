@@ -3,7 +3,7 @@ module StripeLocal
 		require 'stripe'
 
 		class<<self
-			def then_sync %i{from_hash}
+			def then_sync from_hash
 				Stripe::Plan.create from_hash
 			end
 
